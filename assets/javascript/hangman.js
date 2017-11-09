@@ -18,7 +18,7 @@ math.random(x) (choose a random word with a for-loop)
 Wrap shit in functions!
 */
 
-var words = ["Westworld", "The Good The Bad and the Ugly", "The Wild Bunch", "The Searchers", "Unforgiven", "True Grit"];
+var westernWords = ["westworld", "The good The bad and the ugly", "the wild bunch", "the searchers", "unforgiven", "true grit", "shane"];
 
 var word = words[Math.floor(Math.random() * words.length)];
 console.log("word: ", word);   
