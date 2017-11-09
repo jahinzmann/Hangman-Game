@@ -9,4 +9,56 @@ c. Make sure to classify the entry as either in or not in the array (think about
 4. Letter Guess
 5. Number of guesses remaining
 6. win/loss record
+
+To use later:
+
+Math.floor(x)
+math.random(x) (choose a random word with a for-loop)
+
 */
+
+var words = ["Westworld", "The Good The Bad and the Ugly", "The Wild Bunch", "The Searchers"
+
+  ];
+var word = words[Math.floor(Math.random() * words.length)];
+       
+var answerArray = [];
+
+for (var i = 0; i < word.length; i++) {
+    
+        answerArray[i] = "";
+    
+      }
+    
+    var remainingLetters = word.length;
+
+    var guess = prompt("Guess a letter, or click Cancel to stop playing.");
+    
+    if (guess === null) {
+    
+        break;
+    
+     } else if (guess.length !== 1) {
+    
+        alert("Please enter a single letter.");
+    
+      } else {
+    
+        for (var j = 0; j < word.length; j++) {
+            
+            if (word[j] === guess) {
+            
+                answerArray[j] = guess;
+            
+                remainingLetters--;
+            
+                }
+            
+              }
+    
+      }      
+
+        document.addEventListener("DOMContentLoaded", function(event) {
+            var MorriconeGoodBadUgly = new Audio('/assets/sounds/Ennio_Morricone-GoodBadUgly.ogg');
+            MorriconeGoodBadUgly.play();
+
