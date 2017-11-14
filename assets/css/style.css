@@ -1,9 +1,17 @@
-body {
-    /* background-image: url("yulBrennerGunslinger.jpg"); */
-    background-image: url("../images/yulBrennerGunslinger.jpg");
-    background-attachment: fixed;
-    background-image: width 100%;
+body { 
+        background: url("../images/yulBrennerGunslinger.jpg") no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      z-index: -1;
 }
-.h1 {
+.container {
+    z-index: 1;
+}
+#headline {
+    text-align: center;
+    color: white !important;
+    display: fixed;
     text-align: center;
 }
