@@ -18,6 +18,8 @@ math.random(x) (choose a random word with a for-loop)
 Wrap shit in functions!
 */
 
+(function (window) {
+  'use strict';
 var hangman={
   westernWords: ["westworld", "the good the bad and the ugly", "the wild bunch", "the searchers", "unforgiven", "true grit", "shane"],
   guessesRemaining: 10,
@@ -27,23 +29,36 @@ var hangman={
   
 
 configHangman: function() {
-  console.log(westernWords);
-  this.mysteryWord=this.westernWords[Math.floor(Math.random() * words.length)];
+  console.log(this.westernWords);
+  this.mysteryWord=this.westernWords[Math.floor(Math.random() * this.westernWords.length)];
+  console.log(this.westernWords);
   this.targetWordArray=[];
   this.matchesList=[];
   for (var i = 0; i < this.mysteryWord.length; i++) {
     this.targetWordArray.push(this.mysteryWord.charAt(i));
-    console.log(mysteryWord);
-  }
+    
+    }
+    for (var i = 0; i < this.mysteryWord.length; i++) {
+      this.matchesList.push("-");
+    }
+    console.log("mysterword: " + this.mysteryWord);
+    console.log(this.targetWordArray);
+    console.log("matcheslist: " +this.matchesList);
+  }//end config hangman
+}//end hangman object
 
-}
+hangman.configHangman();
+
+document.onkeyup = function execute(event) {
+
+  var guess = String.fromCharCode(event.keyCode).toLowerCase();
+  console.log(guess);
+
+  hangman.configHangman();
+};
 
 
-
-
-};//end hangman object
-
-
+})(window);//end IIFE
 
 
 

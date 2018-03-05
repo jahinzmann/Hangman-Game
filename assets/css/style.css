@@ -11,7 +11,32 @@ body {
 }
 #headline {
     text-align: center;
-    color: white !important;
-    display: fixed;
+    text-shadow: 3px 2px black; 
+    font-size: X-large;
+    color: rgb(77, 54, 7);
+    display:fixed;
+}
+
+div #hangmanWord {
     text-align: center;
+    font-size: 16px;
+    color: rgb(77, 54, 7); 
+}
+
+div #lettersGuessed {
+    text-align: center;
+    font-size: X-large;
+    color: rgb(77, 54, 7);
+}
+
+#GuessesRemaining {
+    text-align: center;
+    font-size: X-large;
+    color: rgb(77, 54, 7);
+}
+
+#score {
+    text-align: center;
+    font-size: X-large;
+    color: rgb(77, 54, 7);
 }
