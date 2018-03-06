@@ -18,44 +18,106 @@ math.random(x) (choose a random word with a for-loop)
 Wrap shit in functions!
 */
 
+//Game object wrapped in a IFFE
 (function (window) {
   'use strict';
 var hangman={
-  westernWords: ["westworld", "the good the bad and the ugly", "the wild bunch", "the searchers", "unforgiven", "true grit", "shane"],
   guessesRemaining: 10,
+  westernWords: ["westworld", "the good the bad and the ugly", "the wild bunch", "the searchers", "unforgiven", "true grit", "shane"],
+  lettersGuessed: [],
   mysteryWord: "",
   targetWordArray: [],
   matchesList: [],
+  shotsHit: 0,
   
-
+//Actual game function: console logs work...
 configHangman: function() {
   console.log(this.westernWords);
   this.mysteryWord=this.westernWords[Math.floor(Math.random() * this.westernWords.length)];
   console.log(this.westernWords);
   this.targetWordArray=[];
   this.matchesList=[];
+
+  //Populates targetWordArray with the mystery word from westernWords
   for (var i = 0; i < this.mysteryWord.length; i++) {
     this.targetWordArray.push(this.mysteryWord.charAt(i));
-    
     }
+    //Pushes in a dash for each letter of the chosen mysteryWord
     for (var i = 0; i < this.mysteryWord.length; i++) {
       this.matchesList.push("-");
     }
+    //testing...1..2..3...
     console.log("mysterword: " + this.mysteryWord);
     console.log(this.targetWordArray);
     console.log("matcheslist: " +this.matchesList);
-  }//end config hangman
-}//end hangman object
 
-hangman.configHangman();
+    //actually writing the basic setup to the DOM
+    document.getElementById("hangmanWord").innerHTML = this.matchesList.join(" "); 
+    this.guessesRemaining = 10;
+    document.getElementById("GuessesRemaining").innerHTML = this.guessesRemaining;
+    this.lettersGuessed = [];
+    document.getElementById("lettersGuessed").innerHTML = " ";
+    },
+    
+//Dynamically-updating the DOM with letters guessed: correct and incorrect
+    updateLettersGuessed: function(incorrectLetter) {
+      this.lettersGuessed.push(incorrectLetter);
+      document.getElementById("lettersGuessed").innerHTML = this.lettersGuessed.join(", ");
+      this.guessesRemaining--;
+      document.getElementById("GuessesRemaining").innerHTML = this.guessesRemaining;
+    },
 
-document.onkeyup = function execute(event) {
+//Game logic
+    GameOver: function() {
+      if (this.matchesList.indexOf("-") == -1) {
+        this.shotsHit++;
+        document.getElementById("targetsHit").innerHTML = this.shotsHit;
+        return true;
+      } else if (this.guessesRemaining > 0) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+// View
+showTarget: function(letterPosition) {
+  this.matchesList[letterPosition] = this.targetWordArray[letterPosition];
+  this.targetWordArray[letterPosition] = "-";
+  document.getElementById("hangmanWord").innerHTML = hangman.matchesList.join(" ");
+}
+
+}; //end config hangman
+
+  hangman.configHangman();
+
+  document.onkeyup = function execute(event) {
 
   var guess = String.fromCharCode(event.keyCode).toLowerCase();
   console.log(guess);
+  var letterOrder = hangman.targetWordArray.indexOf(guess);
+  console.log(letterOrder);
 
-  hangman.configHangman();
-};
+  if (letterOrder >= 0) {
+    while (letterOrder >= 0) {
+      hangman.showTarget(letterOrder);
+      var letterOrder = hangman.targetWordArray.indexOf;
+      }
+    } else {
+      hangman.updateLettersGuessed(guess);
+    }
+    //new game
+    if (hangman.GameOver()) {
+      hangman.configHangman();
+    }
+  
+  
+  
+}; //end of key input functionality
+
+
+
+//} //end hangman object
+
 
 
 })(window);//end IIFE
